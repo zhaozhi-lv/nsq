@@ -20,7 +20,10 @@ import (
 	"nsq-master/internal/version"
 	"nsq-master/nsqd"
 )
+//here is a test with github connection
 
+type gitTest struct{}
+//end test
 type tlsRequiredOption int
 
 func (t *tlsRequiredOption) Set(s string) error {
