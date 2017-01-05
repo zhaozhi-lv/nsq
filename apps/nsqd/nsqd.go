@@ -20,10 +20,7 @@ import (
 	"nsq-master/internal/version"
 	"nsq-master/nsqd"
 )
-//here is a test with github connection
 
-type gitTest struct{}
-//end test
 type tlsRequiredOption int
 
 func (t *tlsRequiredOption) Set(s string) error {
@@ -218,16 +215,16 @@ func (p *program) Start() error {
 	cfg.Validate()
 
 	options.Resolve(opts, flagSet, cfg)
-	nsqd := nsqd.New(opts)
+	_nsqd := nsqd.New(opts)
 
-	nsqd.LoadMetadata()
-	err := nsqd.PersistMetadata()
+	_nsqd.LoadMetadata()
+	err := _nsqd.PersistMetadata()
 	if err != nil {
 		log.Fatalf("ERROR: failed to persist metadata - %s", err.Error())
 	}
-	nsqd.Main()
+	_nsqd.Main()
 
-	p.nsqd = nsqd
+	p.nsqd = _nsqd
 	return nil
 }
 
